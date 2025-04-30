@@ -14,8 +14,8 @@ const QuestionPage = ({ onSubmit }) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(answers); // 상태 저장
-    navigate("/result"); // 결과 페이지로 이동
+    onSubmit(answers);
+    navigate("/result");
   };
 
   let globalIndex = 0;
@@ -29,7 +29,6 @@ const QuestionPage = ({ onSubmit }) => {
         alignItems: "center",
         backgroundColor: "#f3f4f6",
         padding: "1rem",
-        overflowX: "hidden",
         boxSizing: "border-box"
       }}
     >
@@ -64,6 +63,7 @@ const QuestionPage = ({ onSubmit }) => {
             }}>
               {section.title}
             </h2>
+
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {section.questions.map((q) => {
                 const currentIndex = globalIndex++;
@@ -78,18 +78,21 @@ const QuestionPage = ({ onSubmit }) => {
                       fontWeight: "600",
                       marginBottom: "0.5rem"
                     }}>{q.text}</p>
+
+                    {/* 버튼 줄 */}
                     <div style={{
                       display: "flex",
                       justifyContent: "center",
-                      gap: "1rem"
+                      gap: "1rem",
+                      flexWrap: "wrap"
                     }}>
                       {[1, 2, 3, 4, 5].map((num) => (
                         <button
                           key={num}
                           style={{
                             width: "60px",
-                            height: "60px",
-                            fontSize: "1.5rem",
+                            aspectRatio: "1 / 1",  // 정사각형 비율 유지
+                            fontSize: "1.25rem",
                             borderRadius: "50%",
                             border: "2px solid",
                             borderColor: answers[currentIndex] === num ? "#2563eb" : "#d1d5db",
@@ -97,7 +100,7 @@ const QuestionPage = ({ onSubmit }) => {
                             color: answers[currentIndex] === num ? "#ffffff" : "#374151",
                             fontWeight: "bold",
                             cursor: "pointer",
-                            transform: answers[currentIndex] === num ? "scale(1.1)" : "scale(1)",
+                            transform: answers[currentIndex] === num ? "scale(1.08)" : "scale(1)",
                             transition: "all 0.2s ease-in-out"
                           }}
                           onClick={() => handleChange(currentIndex, num)}
