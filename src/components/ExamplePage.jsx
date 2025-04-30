@@ -14,7 +14,7 @@ const strategyExamples = {
       "충남 논산의 폐광 지역을 생태공원으로 조성한 사례처럼, 환경 정화와 자연 복원을 중심으로 한 전략입니다."
   },
   "Economic": {
-    image: "/images/economic.jpg",
+    image: "/images/economic.png",
     description:
       "독일 루르 산업지대의 Zollverein 탄광을 창업·문화 복합공간으로 재생한 대표적인 사례입니다."
   },
