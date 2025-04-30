@@ -44,23 +44,27 @@ const QuestionPage = ({ onSubmit }) => {
           maxHeight: "95vh"
         }}
       >
-        <h1 style={{
-          fontSize: "2rem",
-          fontWeight: "bold",
-          marginBottom: "2rem",
-          textAlign: "center"
-        }}>
+        <h1
+          style={{
+            fontSize: "2rem",
+            fontWeight: "bold",
+            marginBottom: "2rem",
+            textAlign: "center"
+          }}
+        >
           폐광부지 재생 전략 테스트
         </h1>
 
         {questionsBySection.map((section, secIdx) => (
           <div key={secIdx} style={{ marginBottom: "3rem" }}>
-            <h2 style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              color: "#2563eb",
-              marginBottom: "1.5rem"
-            }}>
+            <h2
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                color: "#2563eb",
+                marginBottom: "1.5rem"
+              }}
+            >
               {section.title}
             </h2>
 
@@ -68,39 +72,51 @@ const QuestionPage = ({ onSubmit }) => {
               {section.questions.map((q) => {
                 const currentIndex = globalIndex++;
                 return (
-                  <div key={q.id} style={{
-                    backgroundColor: "#f9fafb",
-                    padding: "1rem",
-                    borderRadius: "0.5rem"
-                  }}>
-                    <p style={{
-                      fontSize: "1.125rem",
-                      fontWeight: "600",
-                      marginBottom: "0.5rem"
-                    }}>{q.text}</p>
+                  <div
+                    key={q.id}
+                    style={{
+                      backgroundColor: "#f9fafb",
+                      padding: "1rem",
+                      borderRadius: "0.5rem"
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontSize: "1.125rem",
+                        fontWeight: "600",
+                        marginBottom: "0.5rem"
+                      }}
+                    >
+                      {q.text}
+                    </p>
 
-                    {/* 버튼 줄 */}
-                    <div style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: "1rem",
-                      flexWrap: "wrap"
-                    }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "0.75rem",
+                        flexWrap: "wrap"
+                      }}
+                    >
                       {[1, 2, 3, 4, 5].map((num) => (
                         <button
                           key={num}
                           style={{
-                            width: "60px",
-                            aspectRatio: "1 / 1",  // 정사각형 비율 유지
-                            fontSize: "1.25rem",
+                            width: "40px",
+                            aspectRatio: "1 / 1", // 정사각형 유지
+                            fontSize: "1rem",
                             borderRadius: "50%",
                             border: "2px solid",
-                            borderColor: answers[currentIndex] === num ? "#2563eb" : "#d1d5db",
-                            backgroundColor: answers[currentIndex] === num ? "#2563eb" : "#e5e7eb",
-                            color: answers[currentIndex] === num ? "#ffffff" : "#374151",
+                            borderColor:
+                              answers[currentIndex] === num ? "#2563eb" : "#d1d5db",
+                            backgroundColor:
+                              answers[currentIndex] === num ? "#2563eb" : "#e5e7eb",
+                            color:
+                              answers[currentIndex] === num ? "#ffffff" : "#374151",
                             fontWeight: "bold",
                             cursor: "pointer",
-                            transform: answers[currentIndex] === num ? "scale(1.08)" : "scale(1)",
+                            transform:
+                              answers[currentIndex] === num ? "scale(1.08)" : "scale(1)",
                             transition: "all 0.2s ease-in-out"
                           }}
                           onClick={() => handleChange(currentIndex, num)}
