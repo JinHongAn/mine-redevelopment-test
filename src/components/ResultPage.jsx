@@ -10,8 +10,8 @@ import {
   Legend
 } from "chart.js";
 import { questionsBySection } from "../data/questions";
+import { useNavigate } from "react-router-dom";
 
-// 차트 설정
 ChartJS.register(
   RadialLinearScale,
   PointElement,
@@ -29,7 +29,7 @@ const strategyWeights = {
   "Infrastructure": [0.035, 0.167, 0.254, 0.074, 0.034, 0.435]
 };
 
-// 전략별 해석 설명
+// 전략별 설명
 const strategyDescriptions = {
   "Tourism-Oriented":
     "문화·역사적 가치와 주변 관광 자원이 풍부하여 관광 중심의 재생이 적합합니다.",
@@ -44,6 +44,8 @@ const strategyDescriptions = {
 };
 
 const ResultPage = ({ answers }) => {
+  const navigate = useNavigate();
+
   // 분야별 평균 점수 계산
   const sectionScores = questionsBySection.map((section) => {
     const values = section.questions.map((q) => answers[q.id - 1]);
@@ -105,6 +107,14 @@ const ResultPage = ({ answers }) => {
     }
   };
 
+  const goToExample = () => {
+    navigate("/examples", {
+      state: {
+        strategy: isMinimal ? "Minimal Intervention" : topStrategy.strategyName
+      }
+    });
+  };
+
   return (
     <div
       style={{
@@ -130,7 +140,6 @@ const ResultPage = ({ answers }) => {
           gap: "2rem"
         }}
       >
-        {/* 추천 전략 제목 */}
         <h1
           style={{
             fontSize: "2rem",
@@ -138,8 +147,7 @@ const ResultPage = ({ answers }) => {
             textAlign: "center"
           }}
         >
-          추천 전략:{" "}
-          {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
+          추천 전략: {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
         </h1>
 
         {/* 레이더 차트 */}
@@ -147,7 +155,7 @@ const ResultPage = ({ answers }) => {
           <Radar data={radarData} options={radarOptions} />
         </div>
 
-        {/* 전략 점수 순위 */}
+        {/* 전략 점수 순위 (Minimal 제외) */}
         {!isMinimal && (
           <div
             style={{
@@ -173,7 +181,7 @@ const ResultPage = ({ answers }) => {
           </div>
         )}
 
-        {/* 전략 설명 출력 */}
+        {/* 전략 해석 */}
         <div
           style={{
             width: "100%",
@@ -190,6 +198,23 @@ const ResultPage = ({ answers }) => {
             isMinimal ? "Minimal Intervention" : topStrategy.strategyName
           ]}
         </div>
+
+        {/* 사례 보기 버튼 */}
+        <button
+          onClick={goToExample}
+          style={{
+            backgroundColor: "#10b981",
+            color: "white",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "9999px",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer"
+          }}
+        >
+          사례 보기
+        </button>
       </div>
     </div>
   );
