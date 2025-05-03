@@ -94,8 +94,8 @@ const ResultPage = ({ answers }) => {
         },
         pointLabels: {
           font: { size: 13 },
-          callback: (label) => {
-            return label.length > 14 ? label.match(/.{1,14}/g).join("\n") : label;
+          callback: function (label) {
+            return label.match(/.{1,10}/g); // 10글자마다 줄바꿈 배열로 반환
           }
         }
       }
@@ -142,7 +142,7 @@ const ResultPage = ({ answers }) => {
           Recommended Strategy: {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
         </h1>
 
-        <div style={{ width: "100%", maxWidth: "600px", minWidth: "300px", aspectRatio: "1 / 1" }}>
+        <div style={{width: "100%", maxWidth: "600px", minWidth: "350px", height: "400px", margin: "0 auto"}}>
           <Radar data={radarData} options={radarOptions} />
         </div>
 
