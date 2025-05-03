@@ -1,58 +1,57 @@
 // src/data/questions.js
 export const questionsBySection = [
-    {
-      title: "오염",
-      questions: [
-        { id: 1, text: "The Degree of Soil Contamination (Point1 : No contaminantion, Point3 : At least one substance exceeds the national \"CONCERN LEVEL\" , Point5 : At least one substance exceeds the nationaL \"ACTION LEVEL\"  )" },
-        { id: 2, text: "수질 오염 정도 (1점: 1등급, 2점: 2등급, 3점: 3등급, 4점: 4등급, 5점: 5등급 혹은 중금속 검출됨)" },
-        { id: 3, text: "노출된 폐석 부지 면적 (1점: 5만 제곱미터 이하, 2점: 5 ~ 10만 제곱미터 이상, 3점: 10 ~ 15만 제곱미터 이상, 4점: 15만 ~ 20만 제곱미터 이상, 5점: 20만 제곱미터 이상)" },
-        { id: 4, text: "주민 건강 피해 (1점: 건강 피해 사례 없음, 3점: 호흡기·피부 질환 등 증상 다수 보고, 5점: 지역 보건소, 언론 등에서 광범위 피해 공식 보고)" },
-      ],
-    },
-    {
-      title: "개발 가능성",
-      questions: [
-        { id: 5, text: "경사 (1점: 30도 이상, 2점: 20-30도, 3점: 10-20도, 4점: 5-10도, 5점: 0-5도)" },
-        { id: 6, text: "고도 (1점: >1000m, 2점: 700~1000m, 3점: 500~700m, 4점: 200~500m, 5점: < 200m)" },
-        { id: 7, text: "면적 (1점: < 10,000m², 2점: 10,000~50,000m², 3점: 50,000~200,000m², 4점: 200,000~500,000m², 5점: > 500,000m²)" },
-        { id: 8, text: "부지 침하 가능성 (1점: 매우 낮음, 2점: 낮음, 3점: 중간, 4점: 높음, 5점: 매우 높음)" },
-      ],
-    },
-    {
-      title: "문화/역사",
-      questions: [
-        { id: 9, text: "운영연수 (1점: 20년 이하, 2점: 20~40년, 3점: 40~60년, 4점: 60~80년, 5점: 80년 이상)" },
-        { id: 10, text: "건물 보존 정도 (1점: 구조물이 전혀 남아 있지 않음, 2점: 대부분 붕괴, 3점: 잔해 일부만 존재, 4점: 일부 보존 + 보수 가능, 5점: 주요 구조물 원형 유지)" },
-        { id: 11, text: "주변 관광 자원 활용도 (1점: 전혀 그렇지 않다, 3점: 보통, 5점: 매우 그렇다)" },
-        { id: 12, text: "주민들의 기억 (1점: 매우 그렇지 않다, 2점: 그렇지 않다, 3점: 보통, 4점: 그렇다, 5점: 매우 그렇다)" },
-      ],
-    },
-    {
-      title: "접근성",
-      questions: [
-        { id: 13, text: "대도시로부터의 거리 (1점: 주요 도시까지 2시간 이상, 2점: 1.5시간 ~2시간, 3점: 1시간 ~ 1.5시간, 4점: 30분 ~ 1시간, 5점: 30분 이하)" },
-        { id: 14, text: "대중교통 편의성 (1점: 매우 그렇지 않다, 2점: 그렇지 않다, 3점: 보통 , 4점: 그렇다, 5점: 매우 그렇다)" },
-        { id: 15, text: "차량 접근성 (1점: 인접 차량 접근 불가 , 2점: 임도로만 접근 가능, 3점: 비포장 도로만 존재, 4점: 포장도로 있음, 5점: 고속도로나 국도 바로)" },
-        { id: 16, text: "시설 편의성 (1점: 매우 그렇지 않다, 2점: 그렇지 않다, 3점: 보통, 4점: 그렇다, 5점: 매우 그렇다)" },
-      ],
-    },
-    {
-      title: "광업 의존도",
-      questions: [
-        { id: 17, text: "인구 증감률 (1점: 인구 증가, 2점: 0~-10% 이상 감소, 3점: -11% ~ 30% 이상 감소, 4점: -31~-50% 이상 감소, 5점: -51% 이상 감소)" },
-        { id: 18, text: "실업률 (1점: 0.1% 이하, 2점: 0.1% ~ 0.5%, 3점: 0.5% ~ 2%, 4점: 2% ~ 5%, 5점: 5% 이상)" },
-        { id: 19, text: "광산이 지역 경제에 큰 영향을 끼쳤는가? (1점: 전혀 그렇지 않다 영향 거의 없음 (다른 산업 중심), 2점: 그렇지 않다 제한적 영향, 3점: 보통 산업 일부를 차지, 4점: 그렇다 주요 산업 중 하나, 5점: 매우 그렇다 지역 경제 중심 산업)" },
-        { id: 20, text: "연간 평균 채굴량 (1점: 15만t 이하, 2점: 15~30만t, 3점: 30~45만t, 4점: 45~60만t, 5점: 60만t 이상)" },
-      ],
-    },
-    {
-      title: "인프라",
-      questions: [
-        { id: 21, text: "주민들의 부지활용 요구도 (1점: 매우 아니다, 2점: 아니다, 3점: 보통, 4점: 그렇다, 5점: 매우 그렇다)" },
-        { id: 22, text: "활용할 인구 (1점: 1,000명 미만, 2점: 1,001명 ~ 5,000명, 3점: 5,001명 ~ 10,000명, 4점: 10,001명 ~ 30,000명, 5점: 30,001명 ~)" },
-        { id: 23, text: "도보 접근성 (1점: 30분 이상, 3점: 15-30분, 5점: 15분 이내)" },
-        { id: 24, text: "1인당 녹지 면적 (m²) (1점: 20 m² 이상, 2점: 15~20 m², 3점: 10~15 m², 4점: 5~10 m², 5점: 5 m² 이내)" },
-      ],
-    },
-  ];
-  
+  {
+    title: "Pollution level",
+    questions: [
+      { id: 1, text: "The Degree of Soil Contamination (Point1 : No contaminantion, Point3 : At least one substance exceeds the national \"CONCERN LEVEL\" , Point5 : At least one substance exceeds the nationaL \"ACTION LEVE\"  )" },
+      { id: 2, text: "The Degree of Water Contamination (Point1 : Class1, Point2 : Class2, Point3 : Class3, Point4 : Class4, Point5 : Class5 or presence of heavy matal contamination )" },
+      { id: 3, text: "Area of Exposed Spoil Heaps ( Point1 : Less than 50,000m², Point2 : Between 50,000㎡ and 100,000㎡, Point3 : Between 100,000㎡ and 150,000㎡, Point4 : Between 150,000㎡ and 200,000㎡, Point5 : More than 200,000㎡ )" },
+      { id: 4, text: "Health Impacts on Residents (Point1 : No reported health impacts related to the mine, Point3 : Multiple reports of respiratory, skin, or similar symptoms, Point5 : Widespread health issues officially reported by local clinics, health centers, or the media)" },
+    ],
+  },
+  {
+    title: "Usability",
+    questions: [
+      { id: 5, text: "Slope Gradient (Point1 : Steeper than 30°, Point2 : Between 20° and 30°, Point3 : Between 10° and 20°, Point4 : Between 5° and 10°, Point5 : Between 0° and 5°)" },
+      { id: 6, text: "Elevation Above Sea Level (Point1 : Over 1000m, Point2 : Between 700m and 1000m, Point3 : Between 500m and 700m, Point4 : Between 200m and 500m, Point5 : Less than 200m)" },
+      { id: 7, text: "Total Site Area (Point1 : Less than 10,000m², Point2 : Between 10,000m² and 50,000m², Point3 : Between 50,000m² and 200,000m², Point4 : Between 200,000m² and 500,000m², Point5 : More than 500,000m²)" },
+      { id: 8, text: "Possibility of Subsidence (Point1 : Very Low, Point2 : Low, Point3 : Moderate, Point4 : High, Point5 : Very High)" },
+    ],
+  },
+  {
+    title: "Cultural & Historical Value",
+    questions: [
+      { id: 9, text: "Years of Operation (Point1 : Less than 20 years, Point2 : 20 ~ 40 years, Point3 : 40 ~ 60 years, Point4 : 60 ~ 80 years, Point5 : Over 80 years)" },
+      { id: 10, text: "Preservation of Structures (Point1 : No remaining structures, Point2 : Most buildings collapsed, Point3 : Only partial remnants remain, Point4 : Partially preserved, structurally restorable, Point5 : Major structures retain original form)" },
+      { id: 11, text: "Tourism Potential (Point1 : Not true at all, Point3 : Neutral, Point5 : Very true)" },
+      { id: 12, text: "Collective Memory Among Residents (Point1 : Strongly disagree, Point2 : Disagree, Point3 : Neutral, Point4 : Agree, Point5 : Strongly agree)" },
+    ],
+  },
+  {
+    title: "Accessibility",
+    questions: [
+      { id: 13, text: "Distance from Major City (Point1 : More than 2 hours from the nearest major city, Point2 : 1.5 to 2 hours, Point3 : 1 to 1.5 hours, Point4 : 30 minutes to 1 hour, Point5 : Less than 30 minutes)" },
+      { id: 14, text: "Public Transit Accessibility (Point1 : Strongly disagree, Point2 : Disagree, Point3 : Neutral, Point4 : Agree, Point5 : Strongly agree)" },
+      { id: 15, text: "Vehicular Accessibility (Point1 : No vehicular access near the site, Point2 : Accessible only by unpaved forestry or maintenance roads (non-public use), Point3 : Only unpaved local roads available, Point4 : Access via paved roads, Point5 : Direct access from highways or national roads)" },
+      { id: 16, text: "On-site Facility Availability (Point1 : Strongly disagree, Point2 : Disagree, Point3 : Neutral, Point4 : Agree, Point5 : Strongly agree)" },
+    ],
+  },
+  {
+    title: "Mining Dependency",
+    questions: [
+      { id: 17, text: "Population Change Rate (Point1 : Population increased, Point2 : Decrease between 0% and 10%, Point3 : Decrease between 11% and 30%, Point4 : Decrease between 31% and 50%, Point5 : Very High)" },
+      { id: 18, text: "Local Unemployment Rate (Point1 : Less than 0.1%, Point2 : 0.1% to 0.5%, Point3 : 0.5% to 2%, Point4 : 2% to 5%, Point5 : Over 5%)" },
+      { id: 19, text: "Economic Dependency on Mining (Point1 : Not at all – negligible impact (dominated by other industries), Point2 : Low – mining played a minor or supplementary role in the economy, Point3 : Moderate – one of several economic sectors, Point4 : High – one of the main industries, Point5 : Very high – mining served as the primary economic driver in the region)" },
+      { id: 20, text: "Average Annual Coal Production (Point1 : Less than 150,000 tons, Point2 : 150,000 ~ 300,000 tons, Point3 : 300,000 ~ 450,000 tons, Point4 : 450,000 ~ 600,000 tons, Point5 : Over 600,000 tons)" },
+    ],
+  },
+  {
+    title: "Community Participation Potential",
+    questions: [
+      { id: 21, text: "Community Demand for Site Redevelopment (Point1 : Strongly disagree, Point2 : Disagree, Point3 : Neutral, Point4 : Agree, Point5 : Strongly agree)" },
+      { id: 22, text: "Estimated Beneficiary Population (Point1 : Fewer than 1,000 people, Point2 : 1,001 ~ 5,000 people, Point3 : 5,001 ~ 10,000 people, Point4 : 10,001 ~ 30,000 people, Point5 : More than 30,000 people)" },
+      { id: 23, text: "Walking Accessibility (Point1 : More than 30 min on foot, Point2 : 30 ~ 45 min, Point3 : 15 ~ 30 min, Point4 : 5 ~ 15 min, Point5 : Within 5 min)" },
+      { id: 24, text: "Green Space per Capita (m²) (Point1 : Over 20m²/person, Point2 : 15 ~ 20m²/person, Point3 : 10 ~ 15m²/person, Point4 : 5 ~ 10m²/person, Point5 : Less than 5m²/person)" },
+    ],
+  },
+];

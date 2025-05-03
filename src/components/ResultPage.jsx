@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-// 전략별 가중치
+// 전략별 AHP 가중치
 const strategyWeights = {
   "Tourism-Oriented": [0.026, 0.047, 0.293, 0.089, 0.166, 0.378],
   "Environmental": [0.423, 0.275, 0.027, 0.058, 0.057, 0.160],
@@ -29,18 +29,58 @@ const strategyWeights = {
   "Infrastructure": [0.035, 0.167, 0.254, 0.074, 0.034, 0.435]
 };
 
-// 전략별 설명
-const strategyDescriptions = {
-  "Tourism-Oriented":
-    "문화·역사적 가치와 주변 관광 자원이 풍부하여 관광 중심의 재생이 적합합니다.",
-  "Environmental":
-    "환경 오염이 심각하여 생태 복원 및 환경 정화 중심의 전략이 필요합니다.",
-  "Economic":
-    "경제 활성화를 위해 산업 또는 창업 중심의 재생 전략이 적절합니다.",
-  "Infrastructure":
-    "지역 인프라 개선이 시급하여 기반 시설 확충 중심의 전략이 적합합니다.",
-  "Minimal Intervention":
-    "전체 점수가 낮아 적극적인 개입보다는 최소한의 유지 및 모니터링이 권장됩니다."
+// 전략별 상세 설명 및 예시
+const strategyDetails = {
+  "Tourism-Oriented": {
+    title: "Tourism Development",
+    description:
+      "Activates the site through cultural, industrial, or eco-tourism programs that reinterpret mining heritage.",
+    strategies: [
+      "Repurpose abandoned industrial facilities into artist studios or exhibition spaces.",
+      "Preserve parts of mining sites and transform them into museums or cultural spaces.",
+      "Build tourism infrastructure such as observation decks, cable cars, and trekking trails linked to mine tours."
+    ]
+  },
+  "Environmental": {
+    title: "Environmental Restoration",
+    description:
+      "Focuses on ecological remediation of severely degraded lands, often prioritizing natural succession and habitat recovery.",
+    strategies: [
+      "Restore vegetation and create ecological parks in former mining areas.",
+      "Stabilize contaminated soils and damaged landforms for sustainable recovery.",
+      "Establish education centers focused on climate change, energy, and environmental conservation."
+    ]
+  },
+  "Economic": {
+    title: "Economic Revitalization",
+    description:
+      "Repurposes the site to support new employment bases through industrial, entrepreneurial, or logistics uses.",
+    strategies: [
+      "Introduce renewable energy industries such as wind and solar power plants.",
+      "Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.",
+      "Support startup clusters and logistics hubs to attract economic activity."
+    ]
+  },
+  "Infrastructure": {
+    title: "Community Infrastructure",
+    description:
+      "Converts post-mining sites into public infrastructure—parks, pathways, or civic spaces—to enhance community life.",
+    strategies: [
+      "Establish community-based spaces such as community centers, village enterprise hubs, and assembly halls.",
+      "Introduce public facilities to enhance resident welfare, including parks, sports areas, and playgrounds.",
+      "Reinterpret industrial heritage by creating storytelling spaces and symbolic installations related to mining history."
+    ]
+  },
+  "Minimal Intervention": {
+    title: "Minimal Intervention",
+    description:
+      "Prioritizes safety and low-impact use, allowing natural succession with minimal transformation.",
+    strategies: [
+      "Preserve mining relics by maintaining original structures and installing informational signage about mining history.",
+      "Create historical interpretation spaces using preserved mining facilities.",
+      "Apply minimal intervention design strategies, focusing on simple spatial organization and subtle design elements."
+    ]
+  }
 };
 
 const ResultPage = ({ answers }) => {
@@ -70,12 +110,14 @@ const ResultPage = ({ answers }) => {
   );
   const topStrategy = sortedStrategies[0];
   const isMinimal = topStrategy.score < 3.0;
+  const strategyKey = isMinimal ? "Minimal Intervention" : topStrategy.strategyName;
 
+  // 레이더 차트 데이터
   const radarData = {
     labels: questionsBySection.map((s) => s.title),
     datasets: [
       {
-        label: isMinimal ? "평가 결과" : topStrategy.strategyName,
+        label: strategyDetails[strategyKey].title,
         data: sectionScores,
         backgroundColor: "rgba(37, 99, 235, 0.2)",
         borderColor: "rgba(37, 99, 235, 1)",
@@ -109,9 +151,7 @@ const ResultPage = ({ answers }) => {
 
   const goToExample = () => {
     navigate("/examples", {
-      state: {
-        strategy: isMinimal ? "Minimal Intervention" : topStrategy.strategyName
-      }
+      state: { strategy: strategyKey }
     });
   };
 
@@ -140,22 +180,16 @@ const ResultPage = ({ answers }) => {
           gap: "2rem"
         }}
       >
-        <h1
-          style={{
-            fontSize: "2rem",
-            fontWeight: "bold",
-            textAlign: "center"
-          }}
-        >
-          추천 전략: {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center" }}>
+          추천 전략: {strategyDetails[strategyKey].title}
         </h1>
 
         {/* 레이더 차트 */}
-        <div style={{ width: "400px", height: "400px" }}>
+        <div style={{ width: "100%", maxWidth: "400px", height: "400px" }}>
           <Radar data={radarData} options={radarOptions} />
         </div>
 
-        {/* 전략 점수 순위 (Minimal 제외) */}
+        {/* 전략 점수 순위 */}
         {!isMinimal && (
           <div
             style={{
@@ -181,22 +215,19 @@ const ResultPage = ({ answers }) => {
           </div>
         )}
 
-        {/* 전략 해석 */}
-        <div
-          style={{
-            width: "100%",
-            backgroundColor: "#f1f5f9",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            textAlign: "center",
-            fontSize: "1.125rem",
-            color: "#1f2937",
-            minHeight: "100px"
-          }}
-        >
-          {strategyDescriptions[
-            isMinimal ? "Minimal Intervention" : topStrategy.strategyName
-          ]}
+        {/* 전략 설명 + 예시 */}
+        <div style={{ width: "100%", textAlign: "left" }}>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+            {strategyDetails[strategyKey].title}
+          </h2>
+          <p style={{ marginBottom: "0.75rem", lineHeight: 1.6 }}>
+            {strategyDetails[strategyKey].description}
+          </p>
+          <ul style={{ listStyleType: "disc", paddingLeft: "1.25rem", lineHeight: 1.7 }}>
+            {strategyDetails[strategyKey].strategies.map((s, idx) => (
+              <li key={idx}>{s}</li>
+            ))}
+          </ul>
         </div>
 
         {/* 사례 보기 버튼 */}

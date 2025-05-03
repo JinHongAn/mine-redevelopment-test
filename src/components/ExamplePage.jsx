@@ -1,32 +1,42 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-// 전략별 사례 이미지 + 설명 정의
+// 전략별 사례 정보 (이름 + 이미지 + 설명)
 const strategyExamples = {
   "Tourism-Oriented": {
-    image: "/images/tourismOriented.png",
+    title: "Tourism Development",
+    case: "Fosse n°9 - 9bis",
+    image: "/images/tourism.png",
     description:
-      "정선 지역의 폐광 부지를 리조트로 재탄생시킨 하이원리조트와 같이, 문화·관광 자원과 연계한 사례입니다."
+      "A former coal mining site transformed into a heritage interpretation complex, featuring a mining museum, guided tours, walking trails, and public exhibitions. The project revitalizes industrial history as a regional tourism asset."
   },
   "Environmental": {
-    image: "/images/environment.jpg",
+    title: "Environmental Restoration",
+    case: "Wangaloa Coal Mine",
+    image: "/images/environment.png",
     description:
-      "충남 논산의 폐광 지역을 생태공원으로 조성한 사례처럼, 환경 정화와 자연 복원을 중심으로 한 전략입니다."
+      "Once a heavily disturbed open-cast mine, Wangaloa has been restored through ecological succession and native planting. With minimal structural interference, the site supports long-term ecological succession."
   },
   "Economic": {
+    title: "Economic Revitalization",
+    case: "Genesee Mine",
     image: "/images/economic.png",
     description:
-      "독일 루르 산업지대의 Zollverein 탄광을 창업·문화 복합공간으로 재생한 대표적인 사례입니다."
+      "Genesee Mine has been repurposed to serve as a regional industrial and energy transition hub. By integrating clean energy generation and industrial logistics, it supports local employment and economic stabilization."
   },
   "Infrastructure": {
-    image: "/images/infrastructure.jpg",
+    title: "Community Infrastructure",
+    case: "Vintondale Colliery",
+    image: "/images/infrastructure.png",
     description:
-      "낙후된 폐광 지역에 산업도로와 물류 인프라를 집중 공급한 사례로, 지역 생활 인프라 기반 확충 중심 전략입니다."
+      "A former coal mine regenerated into a community park through the “AMD&ART” project, combining mine drainage treatment, public trails, wetlands, and art to restore both ecology and daily use."
   },
   "Minimal Intervention": {
-    image: "/images/minimal.jpg",
+    title: "Minimal Intervention",
+    case: "Iizuka Coal Mine",
+    image: "/images/minimal.png",
     description:
-      "지속적인 개발보다 생태적 회복을 위한 최소 개입 유지 사례입니다. 탐방로만 조성하고 자연에 맡기는 방식이 대표적입니다."
+      "The Iizuka site reflects a passive preservation approach, allowing the landscape to regenerate without major redevelopment. Fencing and signage prevent intrusion while ecological succession unfolds."
   }
 };
 
@@ -61,13 +71,22 @@ const ExamplePage = () => {
           style={{
             fontSize: "2rem",
             fontWeight: "bold",
+            marginBottom: "0.5rem"
+          }}
+        >
+          {example?.title} 전략 사례
+        </h1>
+
+        <h2
+          style={{
+            fontSize: "1.25rem",
+            color: "#6b7280",
             marginBottom: "1.5rem"
           }}
         >
-          {strategy} 전략 사례
-        </h1>
+          Case Example: {example?.case}
+        </h2>
 
-        {/* 이미지 출력 */}
         {example?.image && (
           <img
             src={example.image}
@@ -82,7 +101,6 @@ const ExamplePage = () => {
           />
         )}
 
-        {/* 설명 출력 */}
         <p
           style={{
             fontSize: "1.125rem",
