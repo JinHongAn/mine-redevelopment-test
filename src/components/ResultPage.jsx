@@ -34,7 +34,7 @@ const strategyDescriptions = {
   "Environmental Restoration":
     "Focuses on ecological remediation of severely degraded lands, often prioritizing natural succession and habitat recovery.\n\nStrategies\n1. Restore vegetation and create ecological parks in former mining areas.\n2. Stabilize contaminated soils and damaged landforms for sustainable recovery.\n3. Establish education centers focused on climate change, energy, and environmental conservation.",
   "Economic Revitalization":
-    "Repurposes the site to support new employment bases through industrial, entrepreneurial, or logistics uses.\n\nStrategies\n1. Introduce renewable energy industries such as wind and solar power plants.\n2. Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.\n3.Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.",
+    "Repurposes the site to support new employment bases through industrial, entrepreneurial, or logistics uses.\n\nStrategies\n1. Introduce renewable energy industries such as wind and solar power plants.\n2. Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.\n3. Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.",
   "Community Infrastructure":
     "Converts post-mining sites into public infrastructure—parks, pathways, or civic spaces—to enhance community life.\n\nStrategies\n1. Establish community-based spaces such as community centers, village enterprise hubs, and assembly halls.\n2. Introduce public facilities to enhance resident welfare, including parks, sports areas, and playgrounds.\n3. Reinterpret industrial heritage by creating storytelling spaces and symbolic installations related to mining history.",
   "Minimal Intervention":
@@ -83,9 +83,6 @@ const ResultPage = ({ answers }) => {
   const radarOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    layout: {
-      padding: 10
-    },
     scales: {
       r: {
         angleLines: { display: true },
@@ -96,11 +93,9 @@ const ResultPage = ({ answers }) => {
           backdropColor: "transparent"
         },
         pointLabels: {
-          font: { size: 12 },
-          callback: function (label) {
-            return label.length > 10
-              ? label.match(/.{1,10}/g).join("\n")
-              : label;
+          font: { size: 13 },
+          callback: (label) => {
+            return label.length > 14 ? label.match(/.{1,14}/g).join("\n") : label;
           }
         }
       }
@@ -119,33 +114,73 @@ const ResultPage = ({ answers }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4 flex justify-center items-center">
-      <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md flex flex-col items-center gap-8">
-        <h1 className="text-2xl font-bold text-center">
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f3f4f6",
+        padding: "2rem"
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          backgroundColor: "white",
+          padding: "2rem",
+          borderRadius: "0.5rem",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "2rem"
+        }}
+      >
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center" }}>
           Recommended Strategy: {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
         </h1>
 
-        {/* Radar Chart */}
-        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg h-[300px] sm:h-[350px] md:h-[400px]">
+        <div style={{ width: "100%", maxWidth: "600px", minWidth: "300px", aspectRatio: "1 / 1" }}>
           <Radar data={radarData} options={radarOptions} />
         </div>
 
-        {/* Strategy Score Ranking */}
         {!isMinimal && (
-          <div className="w-full bg-gray-100 p-4 rounded text-gray-700 text-base leading-7">
-            <h3 className="font-bold mb-2">Strategy Scores:</h3>
+          <div
+            style={{
+              width: "100%",
+              backgroundColor: "#f9fafb",
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              fontSize: "1rem",
+              color: "#374151",
+              lineHeight: 1.8
+            }}
+          >
+            <h3 style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>Strategy Scores:</h3>
             <ol>
               {sortedStrategies.map((s, idx) => (
                 <li key={`strategy-${idx}`}>
-                  {`${idx + 1}. ${s.strategyName} - ${s.score.toFixed(3)}`}
+                  {`${s.strategyName} - ${s.score.toFixed(3)}`}
                 </li>
               ))}
             </ol>
           </div>
         )}
 
-        {/* Description */}
-        <div className="w-full bg-blue-50 p-4 rounded text-gray-800 whitespace-pre-wrap text-base">
+        <div
+          style={{
+            width: "100%",
+            backgroundColor: "#f1f5f9",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            textAlign: "left",
+            fontSize: "1.125rem",
+            color: "#1f2937",
+            whiteSpace: "pre-wrap"
+          }}
+        >
           {strategyDescriptions[
             isMinimal ? "Minimal Intervention" : topStrategy.strategyName
           ]}
@@ -153,7 +188,16 @@ const ResultPage = ({ answers }) => {
 
         <button
           onClick={goToExample}
-          className="bg-emerald-500 text-white px-6 py-2 rounded-full text-base font-semibold"
+          style={{
+            backgroundColor: "#10b981",
+            color: "white",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "9999px",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer"
+          }}
         >
           View Example
         </button>
