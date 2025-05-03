@@ -60,6 +60,25 @@ const ResultPage = ({ answers }) => {
     }
   );
 
+  function wrapLabel(label, maxLineLength = 10) {
+    const words = label.split(" ");
+    const lines = [];
+    let currentLine = "";
+  
+    words.forEach((word) => {
+      if ((currentLine + word).length > maxLineLength) {
+        lines.push(currentLine.trim());
+        currentLine = word + " ";
+      } else {
+        currentLine += word + " ";
+      }
+    });
+  
+    if (currentLine) lines.push(currentLine.trim());
+  
+    return lines;
+  }
+
   const sortedStrategies = [...strategyResults].sort(
     (a, b) => b.score - a.score
   );
@@ -95,7 +114,7 @@ const ResultPage = ({ answers }) => {
         pointLabels: {
           font: { size: 13 },
           callback: function (label) {
-            return label.match(/.{1,10}/g); // 10글자마다 줄바꿈 배열로 반환
+            return wrapLabel(label); // 공백 기준 줄바꿈
           }
         }
       }
