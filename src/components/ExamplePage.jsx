@@ -3,28 +3,28 @@ import { useLocation } from "react-router-dom";
 
 // 전략별 사례 정보 (이름 + 이미지 + 설명)
 const strategyExamples = {
-  "Tourism-Oriented": {
+  "Tourism Development": {
     title: "Tourism Development",
     case: "Fosse n°9 - 9bis",
     image: "/images/tourism.png",
     description:
       "A former coal mining site transformed into a heritage interpretation complex, featuring a mining museum, guided tours, walking trails, and public exhibitions. The project revitalizes industrial history as a regional tourism asset."
   },
-  "Environmental": {
+  "Environmental Restoration": {
     title: "Environmental Restoration",
     case: "Wangaloa Coal Mine",
     image: "/images/environment.png",
     description:
       "Once a heavily disturbed open-cast mine, Wangaloa has been restored through ecological succession and native planting. With minimal structural interference, the site supports long-term ecological succession."
   },
-  "Economic": {
+  "Economic Revitalization": {
     title: "Economic Revitalization",
     case: "Genesee Mine",
     image: "/images/economic.png",
     description:
       "Genesee Mine has been repurposed to serve as a regional industrial and energy transition hub. By integrating clean energy generation and industrial logistics, it supports local employment and economic stabilization."
   },
-  "Infrastructure": {
+  "Community Infrastructure": {
     title: "Community Infrastructure",
     case: "Vintondale Colliery",
     image: "/images/infrastructure.png",
@@ -74,7 +74,7 @@ const ExamplePage = () => {
             marginBottom: "0.5rem"
           }}
         >
-          {example?.title} case of strategy
+          {example?.title}
         </h1>
 
         <h2

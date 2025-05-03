@@ -93,7 +93,7 @@ const QuestionPage = ({ onSubmit }) => {
               textAlign: "center"
             }}
           >
-            Test of Waste Mine Regeneration Strategy
+            Regeneration Toolkit For Abandoned Mine
           </h1>
 
           {questionsBySection.map((section, secIdx) => (
