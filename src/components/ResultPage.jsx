@@ -21,7 +21,6 @@ ChartJS.register(
   Legend
 );
 
-// 전략별 AHP 가중치
 const strategyWeights = {
   "Tourism-Oriented": [0.026, 0.047, 0.293, 0.089, 0.166, 0.378],
   "Environmental": [0.423, 0.275, 0.027, 0.058, 0.057, 0.160],
@@ -29,72 +28,28 @@ const strategyWeights = {
   "Infrastructure": [0.035, 0.167, 0.254, 0.074, 0.034, 0.435]
 };
 
-// 전략별 상세 설명 및 예시
-const strategyDetails = {
-  "Tourism-Oriented": {
-    title: "Tourism Development",
-    description:
-      "Activates the site through cultural, industrial, or eco-tourism programs that reinterpret mining heritage.",
-    strategies: [
-      "Repurpose abandoned industrial facilities into artist studios or exhibition spaces.",
-      "Preserve parts of mining sites and transform them into museums or cultural spaces.",
-      "Build tourism infrastructure such as observation decks, cable cars, and trekking trails linked to mine tours."
-    ]
-  },
-  "Environmental": {
-    title: "Environmental Restoration",
-    description:
-      "Focuses on ecological remediation of severely degraded lands, often prioritizing natural succession and habitat recovery.",
-    strategies: [
-      "Restore vegetation and create ecological parks in former mining areas.",
-      "Stabilize contaminated soils and damaged landforms for sustainable recovery.",
-      "Establish education centers focused on climate change, energy, and environmental conservation."
-    ]
-  },
-  "Economic": {
-    title: "Economic Revitalization",
-    description:
-      "Repurposes the site to support new employment bases through industrial, entrepreneurial, or logistics uses.",
-    strategies: [
-      "Introduce renewable energy industries such as wind and solar power plants.",
-      "Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.",
-      "Support startup clusters and logistics hubs to attract economic activity."
-    ]
-  },
-  "Infrastructure": {
-    title: "Community Infrastructure",
-    description:
-      "Converts post-mining sites into public infrastructure—parks, pathways, or civic spaces—to enhance community life.",
-    strategies: [
-      "Establish community-based spaces such as community centers, village enterprise hubs, and assembly halls.",
-      "Introduce public facilities to enhance resident welfare, including parks, sports areas, and playgrounds.",
-      "Reinterpret industrial heritage by creating storytelling spaces and symbolic installations related to mining history."
-    ]
-  },
-  "Minimal Intervention": {
-    title: "Minimal Intervention",
-    description:
-      "Prioritizes safety and low-impact use, allowing natural succession with minimal transformation.",
-    strategies: [
-      "Preserve mining relics by maintaining original structures and installing informational signage about mining history.",
-      "Create historical interpretation spaces using preserved mining facilities.",
-      "Apply minimal intervention design strategies, focusing on simple spatial organization and subtle design elements."
-    ]
-  }
+const strategyDescriptions = {
+  "Tourism-Oriented":
+    "Activates the site through cultural, industrial, or eco-tourism programs that reinterpret mining heritage.\n\nStrategies:\n1. Repurpose abandoned industrial facilities into artist studios or exhibition spaces.\n2. Preserve parts of mining sites and transform them into museums or cultural spaces.\n3. Build tourism infrastructure such as observation decks, cable cars, and trekking trails linked to mine tours.",
+  "Environmental":
+    "Focuses on ecological remediation of severely degraded lands, often prioritizing natural succession and habitat recovery.\n\nStrategies:\n1. Restore vegetation and create ecological parks in former mining areas.\n2. Stabilize contaminated soils and damaged landforms for sustainable recovery.\n3. Establish education centers focused on climate change, energy, and environmental conservation.",
+  "Economic":
+    "Repurposes the site to support new employment bases through industrial, entrepreneurial, or logistics uses.\n\nStrategies:\n1. Introduce renewable energy industries such as wind and solar power plants.\n2. Establish future-oriented industrial infrastructure, including natural gas facilities, data centers, and digital server farms.\n3. Support logistics and transport infrastructure to connect with regional markets.",
+  "Infrastructure":
+    "Converts post-mining sites into public infrastructure—parks, pathways, or civic spaces—to enhance community life.\n\nStrategies:\n1. Establish community-based spaces such as community centers, village enterprise hubs, and assembly halls.\n2. Introduce public facilities to enhance resident welfare, including parks, sports areas, and playgrounds.\n3. Reinterpret industrial heritage by creating storytelling spaces and symbolic installations related to mining history.",
+  "Minimal Intervention":
+    "Prioritizes safety and low-impact use, allowing natural succession with minimal transformation.\n\nStrategies:\n1. Preserve mining relics by maintaining original structures and installing informational signage about mining history.\n2. Create historical interpretation spaces using preserved mining facilities.\n3. Apply minimal intervention design strategies, focusing on simple spatial organization and subtle design elements."
 };
 
 const ResultPage = ({ answers }) => {
   const navigate = useNavigate();
 
-  // 분야별 평균 점수 계산
   const sectionScores = questionsBySection.map((section) => {
     const values = section.questions.map((q) => answers[q.id - 1]);
-    const avg =
-      values.reduce((sum, score) => sum + score, 0) / values.length;
+    const avg = values.reduce((sum, score) => sum + score, 0) / values.length;
     return parseFloat(avg.toFixed(2));
   });
 
-  // 전략별 점수 계산
   const strategyResults = Object.entries(strategyWeights).map(
     ([strategyName, weights]) => {
       const total = weights.reduce(
@@ -105,19 +60,15 @@ const ResultPage = ({ answers }) => {
     }
   );
 
-  const sortedStrategies = [...strategyResults].sort(
-    (a, b) => b.score - a.score
-  );
+  const sortedStrategies = [...strategyResults].sort((a, b) => b.score - a.score);
   const topStrategy = sortedStrategies[0];
   const isMinimal = topStrategy.score < 3.0;
-  const strategyKey = isMinimal ? "Minimal Intervention" : topStrategy.strategyName;
 
-  // 레이더 차트 데이터
   const radarData = {
     labels: questionsBySection.map((s) => s.title),
     datasets: [
       {
-        label: strategyDetails[strategyKey].title,
+        label: isMinimal ? "Evaluation Result" : topStrategy.strategyName,
         data: sectionScores,
         backgroundColor: "rgba(37, 99, 235, 0.2)",
         borderColor: "rgba(37, 99, 235, 1)",
@@ -128,6 +79,8 @@ const ResultPage = ({ answers }) => {
   };
 
   const radarOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       r: {
         angleLines: { display: true },
@@ -139,7 +92,7 @@ const ResultPage = ({ answers }) => {
         },
         pointLabels: {
           font: {
-            size: 14
+            size: 12
           }
         }
       }
@@ -151,7 +104,9 @@ const ResultPage = ({ answers }) => {
 
   const goToExample = () => {
     navigate("/examples", {
-      state: { strategy: strategyKey }
+      state: {
+        strategy: isMinimal ? "Minimal Intervention" : topStrategy.strategyName
+      }
     });
   };
 
@@ -180,16 +135,20 @@ const ResultPage = ({ answers }) => {
           gap: "2rem"
         }}
       >
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center" }}>
-          추천 전략: {strategyDetails[strategyKey].title}
+        <h1
+          style={{
+            fontSize: "2rem",
+            fontWeight: "bold",
+            textAlign: "center"
+          }}
+        >
+          Recommended Strategy: {isMinimal ? "Minimal Intervention" : topStrategy.strategyName}
         </h1>
 
-        {/* 레이더 차트 */}
-        <div style={{ width: "100%", maxWidth: "400px", height: "400px" }}>
+        <div style={{ width: "100%", maxWidth: "500px", height: "350px" }}>
           <Radar data={radarData} options={radarOptions} />
         </div>
 
-        {/* 전략 점수 순위 */}
         {!isMinimal && (
           <div
             style={{
@@ -203,34 +162,37 @@ const ResultPage = ({ answers }) => {
             }}
           >
             <h3 style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
-              전략 점수 순위:
+              Strategy Scores:
             </h3>
             <ol>
               {sortedStrategies.map((s, idx) => (
                 <li key={`strategy-${idx}`}>
-                  {s.strategyName} - {s.score.toFixed(3)}
+                  {idx + 1}. {s.strategyName} - {s.score.toFixed(3)}
                 </li>
               ))}
             </ol>
           </div>
         )}
 
-        {/* 전략 설명 + 예시 */}
-        <div style={{ width: "100%", textAlign: "left" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
-            {strategyDetails[strategyKey].title}
-          </h2>
-          <p style={{ marginBottom: "0.75rem", lineHeight: 1.6 }}>
-            {strategyDetails[strategyKey].description}
-          </p>
-          <ul style={{ listStyleType: "disc", paddingLeft: "1.25rem", lineHeight: 1.7 }}>
-            {strategyDetails[strategyKey].strategies.map((s, idx) => (
-              <li key={idx}>{s}</li>
-            ))}
-          </ul>
+        <div
+          style={{
+            width: "100%",
+            backgroundColor: "#f1f5f9",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            textAlign: "left",
+            fontSize: "1.125rem",
+            color: "#1f2937",
+            whiteSpace: "pre-line"
+          }}
+        >
+          {
+            strategyDescriptions[
+              isMinimal ? "Minimal Intervention" : topStrategy.strategyName
+            ]
+          }
         </div>
 
-        {/* 사례 보기 버튼 */}
         <button
           onClick={goToExample}
           style={{
@@ -244,7 +206,7 @@ const ResultPage = ({ answers }) => {
             cursor: "pointer"
           }}
         >
-          사례 보기
+          View Case Example
         </button>
       </div>
     </div>

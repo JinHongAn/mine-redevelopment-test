@@ -93,7 +93,7 @@ const QuestionPage = ({ onSubmit }) => {
               textAlign: "center"
             }}
           >
-            폐광부지 재생 전략 테스트
+            Test of Waste Mine Regeneration Strategy
           </h1>
 
           {questionsBySection.map((section, secIdx) => (
@@ -172,7 +172,7 @@ const QuestionPage = ({ onSubmit }) => {
                 cursor: "pointer"
               }}
             >
-              결과 보기
+              View Test Result
             </button>
           </div>
         </div>

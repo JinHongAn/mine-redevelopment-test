@@ -42,7 +42,7 @@ const strategyExamples = {
 
 const ExamplePage = () => {
   const location = useLocation();
-  const strategy = location.state?.strategy || "알 수 없음";
+  const strategy = location.state?.strategy || "Unknown";
   const example = strategyExamples[strategy];
 
   return (
@@ -74,7 +74,7 @@ const ExamplePage = () => {
             marginBottom: "0.5rem"
           }}
         >
-          {example?.title} 전략 사례
+          {example?.title} case of strategy
         </h1>
 
         <h2
@@ -108,7 +108,7 @@ const ExamplePage = () => {
             lineHeight: "1.8"
           }}
         >
-          {example?.description || "해당 전략에 대한 사례 설명이 없습니다."}
+          {example?.description || "There is no case description for this strategy."}
         </p>
       </div>
     </div>
