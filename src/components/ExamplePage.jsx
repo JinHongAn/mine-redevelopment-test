@@ -3,15 +3,15 @@ import { useLocation } from "react-router-dom";
 
 // 전략별 사례 정보 (이름 + 이미지 + 설명)
 const strategyExamples = {
-  "Tourism Development": {
-    title: "Tourism Development",
+  "Tourism Activation": {
+    title: "Tourism Activation",
     case: "Fosse n°9 - 9bis",
     image: "/images/tourism.png",
     description:
       "A former coal mining site transformed into a heritage interpretation complex, featuring a mining museum, guided tours, walking trails, and public exhibitions. The project revitalizes industrial history as a regional tourism asset."
   },
-  "Environmental Restoration": {
-    title: "Environmental Restoration",
+  "Environmental Recovery": {
+    title: "Environmental Recovery",
     case: "Wangaloa Coal Mine",
     image: "/images/environment.png",
     description:
@@ -24,15 +24,15 @@ const strategyExamples = {
     description:
       "Genesee Mine has been repurposed to serve as a regional industrial and energy transition hub. By integrating clean energy generation and industrial logistics, it supports local employment and economic stabilization."
   },
-  "Community Infrastructure": {
-    title: "Community Infrastructure",
+  "Community Space Development": {
+    title: "Community Space Development",
     case: "Vintondale Colliery",
     image: "/images/infrastructure.png",
     description:
       "A former coal mine regenerated into a community park through the “AMD&ART” project, combining mine drainage treatment, public trails, wetlands, and art to restore both ecology and daily use."
   },
-  "Minimal Intervention": {
-    title: "Minimal Intervention",
+  "Low-Impact Management": {
+    title: "Low-Impact Management",
     case: "Iizuka Coal Mine",
     image: "/images/minimal.png",
     description:

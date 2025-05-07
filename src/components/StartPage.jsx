@@ -20,9 +20,11 @@ const StartPage = () => {
         textAlign: "center",
         padding: "2rem"
       }}
-    >
-      {/* 중간 위치로 살짝 내려온 제목 */}
-      <div style={{ marginTop: "6rem" }}>
+    ><br></br>
+    <br></br>
+    <br></br>
+      {/* 제목 + 버튼 묶음 */}
+      <div style={{ marginTop: "6rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <h1 style={{ fontSize: "2rem", fontWeight: "bold", color: "#1f2937" }}>
           MineScape Toolkit:
         </h1>
@@ -31,15 +33,12 @@ const StartPage = () => {
             fontSize: "1.125rem",
             fontWeight: "500",
             color: "#4b5563",
-            marginTop: "0.5rem"
+            marginTop: "0.5rem",
+            marginBottom: "2rem"
           }}
         >
           Strategic Framework for<br />Post-Mining Site Redevelopment
         </h2>
-      </div>
-
-      {/* 시작 버튼 */}
-      <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
         <button
           onClick={handleStart}
           style={{
@@ -59,7 +58,7 @@ const StartPage = () => {
 
       {/* 하단 이미지 */}
       <img
-        src="/images/start-image.png" // 📌 실제 경로로 교체
+        src="/images/start-image.png"
         alt="Mining Site"
         style={{
           width: "100%",
