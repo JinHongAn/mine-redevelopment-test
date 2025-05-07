@@ -5,7 +5,7 @@ export const questionsBySection = [
     questions: [
       { id: 1, text: "The Degree of Soil Contamination (Point1 : No contaminantion, Point3 : At least one substance exceeds the national \"CONCERN LEVEL\" , Point5 : At least one substance exceeds the nationaL \"ACTION LEVE\"  )" },
       { id: 2, text: "The Degree of Water Contamination (Point1 : Class1, Point2 : Class2, Point3 : Class3, Point4 : Class4, Point5 : Class5 or presence of heavy matal contamination )" },
-      { id: 3, text: "Area of Exposed Spoil Heaps ( Point1 : Less than 50,000m², Point2 : Between 50,000㎡ and 100,000㎡, Point3 : Between 100,000㎡ and 150,000㎡, Point4 : Between 150,000㎡ and 200,000㎡, Point5 : More than 200,000㎡ )" },
+      { id: 3, text: "Area of Exposed Spoil Heaps (Point1 : Less than 50,000m², Point2 : Between 50,000㎡ and 100,000㎡, Point3 : Between 100,000㎡ and 150,000㎡, Point4 : Between 150,000㎡ and 200,000㎡, Point5 : More than 200,000㎡ )" },
       { id: 4, text: "Health Impacts on Residents (Point1 : No reported health impacts related to the mine, Point3 : Multiple reports of respiratory, skin, or similar symptoms, Point5 : Widespread health issues officially reported by local clinics, health centers, or the media)" },
     ],
   },

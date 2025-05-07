@@ -93,7 +93,7 @@ const QuestionPage = ({ onSubmit }) => {
               textAlign: "center"
             }}
           >
-            Regeneration Toolkit For Abandoned Mine
+            MineScape Toolkit
           </h1>
 
           {questionsBySection.map((section, secIdx) => (
@@ -112,6 +112,8 @@ const QuestionPage = ({ onSubmit }) => {
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                 {section.questions.map((q) => {
                   const currentIndex = globalIndex++;
+                  const [mainText, parenthesisText] = q.text.split(/\s*(\(.*\))\s*/).filter(Boolean);
+
                   return (
                     <div
                       key={q.id}
@@ -128,7 +130,12 @@ const QuestionPage = ({ onSubmit }) => {
                           marginBottom: "0.5rem"
                         }}
                       >
-                        {q.text}
+                        {mainText} {" "}
+                        {parenthesisText && (
+                          <span style={{ fontSize: "0.875rem", color: "#6b7280", fontWeight: "normal" }}>
+                            {parenthesisText}
+                          </span>
+                        )}
                       </p>
 
                       <div
