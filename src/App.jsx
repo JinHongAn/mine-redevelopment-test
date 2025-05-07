@@ -4,42 +4,31 @@ import StartPage from "./components/StartPage";
 import QuestionPage from "./components/QuestionPage";
 import ResultPage from "./components/ResultPage";
 import ExamplePage from "./components/ExamplePage";
+import ExamplePage2 from "./components/ExamplePage2";
 
 const App = () => {
-  const [answers, setAnswers] = useState(null); // 사용자 답변 저장
+  const [answers, setAnswers] = useState(null);
 
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-100 p-6">
         <Routes>
-          {/* 시작 페이지 */}
           <Route path="/" element={<StartPage />} />
-
-          {/* 질문 페이지 */}
           <Route path="/questions" element={<QuestionPage onSubmit={setAnswers} />} />
-
-          {/* 결과 페이지 */}
           <Route
             path="/result"
             element={
               answers ? (
                 <ResultPage answers={answers} />
               ) : (
-                <div
-                  style={{
-                    textAlign: "center",
-                    marginTop: "4rem",
-                    fontSize: "1.25rem"
-                  }}
-                >
-                  먼저 설문을 완료해주세요.
+                <div style={{ textAlign: "center", marginTop: "4rem", fontSize: "1.25rem" }}>
+                  알림을 완료해주세요.
                 </div>
               )
             }
           />
-
-          {/* 전략 사례 페이지 */}
           <Route path="/examples" element={<ExamplePage />} />
+          <Route path="/examples2" element={<ExamplePage2 />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,7 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-// 전략별 사례 정보 (이름 + 이미지 + 설명)
 const strategyExamples = {
   "Tourism Activation": {
     title: "Tourism Activation",
@@ -44,6 +43,13 @@ const ExamplePage = () => {
   const location = useLocation();
   const strategy = location.state?.strategy || "Unknown";
   const example = strategyExamples[strategy];
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    navigate("/examples2", {
+      state: { strategy }
+    });
+  };
 
   return (
     <div
@@ -67,26 +73,12 @@ const ExamplePage = () => {
           textAlign: "center"
         }}
       >
-        <h1
-          style={{
-            fontSize: "2rem",
-            fontWeight: "bold",
-            marginBottom: "0.5rem"
-          }}
-        >
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
           {example?.title}
         </h1>
-
-        <h2
-          style={{
-            fontSize: "1.25rem",
-            color: "#6b7280",
-            marginBottom: "1.5rem"
-          }}
-        >
+        <h2 style={{ fontSize: "1.25rem", color: "#6b7280", marginBottom: "1.5rem" }}>
           Case Example: {example?.case}
         </h2>
-
         {example?.image && (
           <img
             src={example.image}
@@ -100,16 +92,25 @@ const ExamplePage = () => {
             }}
           />
         )}
-
-        <p
-          style={{
-            fontSize: "1.125rem",
-            color: "#374151",
-            lineHeight: "1.8"
-          }}
-        >
+        <p style={{ fontSize: "1.125rem", color: "#374151", lineHeight: "1.8" }}>
           {example?.description || "There is no case description for this strategy."}
         </p>
+        <button
+          onClick={handleNext}
+          style={{
+            marginTop: "2rem",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "9999px",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer"
+          }}
+        >
+          View More Example
+        </button>
       </div>
     </div>
   );
