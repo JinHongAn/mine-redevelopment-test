@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import StartPage from "./components/StartPage";
 import QuestionPage from "./components/QuestionPage";
 import ResultPage from "./components/ResultPage";
 import ExamplePage from "./components/ExamplePage";
@@ -11,24 +12,33 @@ const App = () => {
     <BrowserRouter>
       <div className="min-h-screen bg-gray-100 p-6">
         <Routes>
-          {/* 메인 질문 페이지 */}
-          <Route path="/" element={<QuestionPage onSubmit={setAnswers} />} />
+          {/* 시작 페이지 */}
+          <Route path="/" element={<StartPage />} />
 
-          {/* 결과 페이지 - answers가 없으면 안내 메시지 출력 */}
+          {/* 질문 페이지 */}
+          <Route path="/questions" element={<QuestionPage onSubmit={setAnswers} />} />
+
+          {/* 결과 페이지 */}
           <Route
             path="/result"
             element={
               answers ? (
                 <ResultPage answers={answers} />
               ) : (
-                <div style={{ textAlign: "center", marginTop: "4rem", fontSize: "1.25rem" }}>
+                <div
+                  style={{
+                    textAlign: "center",
+                    marginTop: "4rem",
+                    fontSize: "1.25rem"
+                  }}
+                >
                   먼저 설문을 완료해주세요.
                 </div>
               )
             }
           />
 
-          {/* 사례 페이지 - 전략 이름은 ResultPage에서 전달됨 */}
+          {/* 전략 사례 페이지 */}
           <Route path="/examples" element={<ExamplePage />} />
         </Routes>
       </div>

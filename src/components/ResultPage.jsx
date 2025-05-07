@@ -22,10 +22,10 @@ ChartJS.register(
 );
 
 const strategyWeights = {
-  "Tourism Development": [0.026, 0.047, 0.293, 0.089, 0.166, 0.378],
+  "Tourism Development": [0.027, 0.047, 0.293, 0.089, 0.166, 0.378],
   "Environmental Restoration": [0.423, 0.275, 0.027, 0.058, 0.057, 0.16],
-  "Economic Revitalization": [0.028, 0.385, 0.039, 0.086, 0.292, 0.171],
-  "Community Infrastructure": [0.035, 0.167, 0.254, 0.074, 0.034, 0.435]
+  "Economic Revitalization": [0.027, 0.385, 0.039, 0.086, 0.292, 0.171],
+  "Community Infrastructure": [0.036, 0.167, 0.254, 0.074, 0.034, 0.435]
 };
 
 const strategyDescriptions = {
