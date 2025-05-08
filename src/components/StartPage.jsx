@@ -37,7 +37,7 @@ const StartPage = () => {
             marginBottom: "2rem"
           }}
         >
-          Strategic Framework for<br />Post-Mining Site Redevelopment
+           A Contextual Framework for<br />Post-Mining Regeneration
         </h2>
         <button
           onClick={handleStart}
