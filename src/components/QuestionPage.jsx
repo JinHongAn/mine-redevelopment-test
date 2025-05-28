@@ -22,7 +22,7 @@ const QuestionPage = ({ onSubmit }) => {
 
   return (
     <>
-      {/* ✅ 반응형 스타일 정의 */}
+      {/* 반응형 스타일 정의 */}
       <style>{`
         .score-button {
           aspect-ratio: 1 / 1;
